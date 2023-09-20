@@ -12,8 +12,9 @@ namespace Calculator
 {
     public partial class Form1 : Form
     {
+        string b;
         double a;
-        double sum = 0;
+        int c = 0;
         public Form1()
         {
             InitializeComponent();
@@ -30,33 +31,63 @@ namespace Calculator
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            a += Convert.ToDouble(textBox1.Text);
-            textBox1.Clear();     
-
+            if (textBox1.Text == "")
+            {
+                textBox1.Clear();
+            }
+            else
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                textBox1.Clear();
+                b = "+";
+            }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            a -= Convert.ToDouble(textBox1.Text);
-            textBox1.Clear();
-            sum = a - sum;
+            c++;
+            if (textBox1.Text == "")
+            {
+                textBox1.Text += "-";
+            }
+            else if(textBox1.Text == "-"){
+                return;
+            }
+            else
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                textBox1.Clear();
+                b = "-";
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            a *= Convert.ToDouble(textBox1.Text);
-            textBox1.Clear();
-            sum = a * sum;
+            if (textBox1.Text == "")
+            {
+                textBox1.Clear();
+            }
+            else
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                textBox1.Clear();
+                b = "*";
+            }
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            a /= Convert.ToDouble(textBox1.Text);
-            textBox1.Clear();
-            if(a != 0)
+            if (textBox1.Text == "")
             {
-                sum = a / sum;
+                textBox1.Clear();
             }
-
+            else
+            {
+                a = Convert.ToDouble(textBox1.Text);
+                textBox1.Clear();
+                b = "/";
+            }    
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -98,7 +129,30 @@ namespace Calculator
 
         private void button13_Click(object sender, EventArgs e)
         {
-            textBox1.Text = Convert.ToString(a);
+            
+            if(b == "+")
+            {
+                textBox1.Text = Convert.ToString(Convert.ToDouble(textBox1.Text) + a);
+            }
+            if(b == "-")
+            {
+                textBox1.Text = Convert.ToString(a - Convert.ToDouble(textBox1.Text));
+            }
+            if(b == "*")
+            {
+                textBox1.Text = Convert.ToString(Convert.ToDouble(textBox1.Text) * a);
+            }
+            if(b == "/")
+            {
+                if(a == 0)
+                {
+                    textBox1.Text = "Error";
+                }
+                else
+                {
+                    textBox1.Text = Convert.ToString(Convert.ToDouble(textBox1.Text) / a);
+                }  
+            }
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -114,6 +168,11 @@ namespace Calculator
         private void button16_Click(object sender, EventArgs e)
         {
             textBox1.Text += "9";
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
         }
     }
 }
