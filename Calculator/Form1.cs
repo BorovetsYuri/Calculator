@@ -14,7 +14,7 @@ namespace Calculator
     {
         string b;
         double a;
-        int c = 0;
+        
         public Form1()
         {
             InitializeComponent();
@@ -37,14 +37,21 @@ namespace Calculator
             }
             else
             {
-                a = Convert.ToDouble(textBox1.Text);
-                textBox1.Clear();
-                b = "+";
+                if (textBox1.Text == "-")
+                {
+                    textBox1.Clear();
+                    b = "";
+                }
+                else
+                {
+                    a = Convert.ToDouble(textBox1.Text);
+                    textBox1.Clear();
+                    b = "+";
+                }
             }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            c++;
             if (textBox1.Text == "")
             {
                 textBox1.Text += "-";
@@ -65,13 +72,22 @@ namespace Calculator
         {
             if (textBox1.Text == "")
             {
-                textBox1.Clear();
+                return;
             }
             else
             {
-                a = Convert.ToDouble(textBox1.Text);
-                textBox1.Clear();
-                b = "*";
+                if(textBox1.Text == "-")
+                {
+                    textBox1.Clear();
+                    b = "";
+                }
+                else
+                {
+                    a = Convert.ToDouble(textBox1.Text);
+                    textBox1.Clear();
+                    b = "*";
+                }
+                
             }
             
         }
@@ -84,9 +100,17 @@ namespace Calculator
             }
             else
             {
-                a = Convert.ToDouble(textBox1.Text);
-                textBox1.Clear();
-                b = "/";
+                if (textBox1.Text == "-")
+                {
+                    textBox1.Clear();
+                    b = "";
+                }
+                else
+                {
+                    a = Convert.ToDouble(textBox1.Text);
+                    textBox1.Clear();
+                    b = "/";
+                }               
             }    
         }
 
